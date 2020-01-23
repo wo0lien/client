@@ -47,8 +47,10 @@ func Pool(nb, filter, port int, host, filePath string) {
 
 	for i := 0; i < nb; i++ {
 		wg.Add(1)
-		StartClient(i, filter, port, host, &wg)
+		go StartClient(i, filter, port, host, &wg)
 	}
+
+	wg.Wait()
 
 }
 
@@ -60,7 +62,7 @@ func StartClient(id, filter, port int, host string, wg *sync.WaitGroup) {
 
 	defer wg.Done()
 
-	path := string(id)
+	path := strconv.Itoa(id)
 
 	connection, err := net.Dial("tcp", host+":"+strconv.Itoa(port))
 	if err != nil {

@@ -15,6 +15,7 @@ func main() {
 	port := flag.Int("port", 8080, "Port du serveur")
 	filter := flag.Int("filter", 1, "Filtre à utiliser : 1 = negatif,2 = greyscale, 3 = edge, 4 = median noise filter, 5 = mean noise filter")
 	filePath := flag.String("path", "", "--REQUIRED-- Chemin relatif vers l'image")
+	nb := flag.Int("Nb", 1, "Number of concurrent client laucnhed")
 
 	flag.Parse()
 
@@ -24,6 +25,6 @@ func main() {
 		os.Exit(1)
 	}
 
-	pool.Pool(1, *filter, *port, *host, *filePath)
+	pool.Pool(*nb, *filter, *port, *host, *filePath)
 
 }
