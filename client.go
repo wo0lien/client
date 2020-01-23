@@ -18,7 +18,7 @@ func main() {
 	// Handle host:port, image and filter with flags
 	host := flag.String("host", "127.0.0.1", "Nom d'hote du serveur")
 	port := flag.Int("port", 8080, "Port du serveur")
-	filter := flag.Int("filter", 1, "Filtre à utiliser : 1 = grayscale, 2 = edge")
+	filter := flag.Int("filter", 1, "Filtre à utiliser : 1 = negatif,2 = greyscale, 3 = edge, 4 = median noise filter, 5 = mean noise filter")
 	filePath := flag.String("path", "", "--REQUIRED-- Chemin relatif vers l'image")
 
 	flag.Parse()
